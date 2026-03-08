@@ -1,1 +1,134 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фізика 8 клас - Інтерактивні задачі</title>
+    <style>
+        :root {
+            --primary-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --accent-color: #2563eb;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+        }
 
+        body {
+            font-family: "Cambria Math", "Cambria", serif;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 24px;
+            text-align: center;
+        }
+
+        header {
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            margin: 0 0 8px 0;
+            color: var(--accent-color);
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .task-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .task-item {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            background: #f1f5f9;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s, background 0.2s, border-color 0.2s;
+            text-align: left;
+        }
+
+        .task-item:hover {
+            transform: translateY(-2px);
+            background: #e2e8f0;
+            border-color: var(--accent-color);
+        }
+
+        .task-number {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 4px;
+        }
+
+        .task-desc {
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        footer {
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Запобігання горизонтальному скролу та адаптивність */
+        @media (max-width: 380px) {
+            .container {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Фізика 8 клас</h1>
+            <p>Інтерактивні задачі до підручника</p>
+        </header>
+
+        <div class="task-list">
+            <!-- Задача 28.5 (Моделювання) -->
+            <a href="task_28_5_modeling.html" class="task-item">
+                <span class="task-number">Задача 28.5</span>
+                <span class="task-desc">Моделювання процесу (Інтерактивний стенд)</span>
+            </a>
+
+            <!-- Задача 28.5 (Розв'язання) -->
+            <a href="task_28_5_solution.html" class="task-item">
+                <span class="task-number">Задача 28.5</span>
+                <span class="task-desc">Покрокове розв'язання та обчислення</span>
+            </a>
+        </div>
+
+        <footer>
+            8 клас • Вправа 28 • Електричний струм
+        </footer>
+    </div>
+
+</body>
+</html>
