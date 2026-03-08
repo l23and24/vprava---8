@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача про крапельку олії в електричному полі</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Встановлюємо Cambria Math як основний шрифт */
+        body {
+            font-family: "Cambria Math", "Cambria", "Times New Roman", serif;
+            background-color: #ffffff;
+            color: #000000;
+            font-size: 20px;
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        /* Налаштування MathJax */
+        .mjx-chtml {
+            font-family: inherit !important;
+            font-size: 100% !important;
+        }
+
+        /* Кроки анімації */
+        .step {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .step.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 1.5rem;
+        }
+
+        .title-center {
+            text-align: center;
+        }
+
+        .title-left {
+            text-align: left;
+        }
+
+        .vertical-line {
+            border-right: 2px solid black;
+        }
+        
+        .horizontal-line {
+            border-top: 2px solid black;
+            margin-top: 1rem;
+            padding-top: 0.5rem;
+        }
+
+        /* Навігація */
+        .nav-arrow {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 50;
+            transition: all 0.3s ease;
+            color: rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-arrow.left { left: 0; }
+        .nav-arrow.right { right: 0; }
+
+        .arrow-icon {
+            font-size: 50px;
+            user-select: none;
+        }
+
+        @media (max-width: 640px) {
+            .nav-arrow { width: 40px; }
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-10 min-h-screen flex flex-col items-center select-none">
+    
+    <div id="prev-btn" class="nav-arrow left" title="Назад"><span class="arrow-icon">‹</span></div>
+    <div id="next-btn" class="nav-arrow right" title="Далі"><span class="arrow-icon">›</span></div>
+
+    <div class="max-w-7xl w-full bg-white min-h-[600px] relative">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-0 relative z-10">
+            
+            <!-- Колонна 1: Дано -->
+            <div class="md:col-span-2 vertical-line pr-4">
+                <h2 class="title-left">Дано:</h2>
+                <div class="space-y-6">
+                    <div class="step" id="step-1">$m = 3,2 \, \text{мг}$</div>
+                    <div class="step horizontal-line" id="step-4">
+                        $F_{\text{ел}} - ?$
+                    </div>
+                </div>
+            </div>
+
+            <!-- Колонна 2: СІ -->
+            <div class="md:col-span-2 vertical-line px-4 text-center">
+                <h2 class="title-center">СІ</h2>
+                <div class="space-y-6">
+                    <div class="step" id="step-2">$3,2 \cdot 10^{-6} \, \text{кг}$</div>
+                </div>
+            </div>
+
+            <!-- Колонна 3: Розв'язання -->
+            <div class="md:col-span-4 px-6 text-center">
+                <h2 class="step title-center" id="step-3">Розв'язання</h2>
+                
+                <div class="flex flex-col items-center space-y-4 mt-4">
+                    <div class="step" id="step-5">Крапелька перебуває в рівновазі:</div>
+                    <div class="step font-bold" id="step-6">$F_{\text{ел}} = F_{\text{тяж}}$</div>
+                    <div class="step" id="step-7">$F_{\text{тяж}} = mg$</div>
+                    <div class="step py-2 text-blue-900 max-w-xs mx-auto" id="step-8">
+                        Оскільки крапелька заряджена негативно, а $F_{\text{ел}}$ діє вгору, то:
+                    </div>
+                    <div class="step text-blue-900" id="step-9">
+                        • Верхня пластина — позитивна ($+$)<br>
+                        • Нижня пластина — негативна ($-$)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Колонна 4: Обчислення -->
+            <div class="md:col-span-4 border-l-2 border-black pl-8">
+                <div class="space-y-12 pt-12">
+                    <!-- Перевірка розмірності -->
+                    <div class="step" id="step-10">
+                        $ [F_{\text{ел}}] = \text{кг} \cdot \dfrac{\text{Н}}{\text{кг}} = \text{Н} $
+                    </div>
+
+                    <!-- Розрахунок сили: наближено одразу після 9,8 -->
+                    <div class="step" id="step-11">
+                        $ F_{\text{ел}} = 3,2 \cdot 10^{-6} \cdot 9,8 \approx 31,4 \cdot 10^{-6} \, (\text{Н}) $
+                    </div>
+
+                    <div class="step" id="step-12">
+                        $ F_{\text{ел}} = 31,4 \, \text{мкН} $
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Відповідь -->
+        <div class="step mt-16 text-center" id="step-13">
+            <p>
+                $ \text{Відповідь: } F_{\text{ел}} \approx 31,4 \, \text{мкН}, \text{ вгору; } $ <br>
+                $ \text{верхня пластина (+), нижня (-).} $
+            </p>
+        </div>
+    </div>
+
+    <div class="fixed bottom-4 text-gray-300 text-sm">
+        Крок <span id="step-counter">0</span> / 13
+    </div>
+
+    <script>
+        let currentStep = 0;
+        const totalSteps = 13;
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const counter = document.getElementById('step-counter');
+
+        function updateUI() {
+            for (let i = 1; i <= totalSteps; i++) {
+                const el = document.getElementById(`step-${i}`);
+                if (el) {
+                    if (i <= currentStep) el.classList.add('visible');
+                    else el.classList.remove('visible');
+                }
+            }
+            counter.innerText = currentStep;
+            prevBtn.style.opacity = currentStep === 0 ? "0" : "1";
+            prevBtn.style.pointerEvents = currentStep === 0 ? "none" : "auto";
+            nextBtn.style.opacity = currentStep === totalSteps ? "0.2" : "1";
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateUI();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 0) {
+                currentStep--;
+                updateUI();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'ArrowRight' || e.code === 'Space') nextBtn.click();
+            if (e.code === 'ArrowLeft') prevBtn.click();
+        });
+
+        window.MathJax = {
+            tex: { 
+                inlineMath: [['$', '$']], 
+                displayMath: [['$$', '$$']]
+            },
+            chtml: { scale: 1 }
+        };
+
+        window.onload = updateUI;
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
